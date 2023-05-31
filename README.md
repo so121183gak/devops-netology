@@ -8,3 +8,4 @@ New line
 Файлы которые связаны с локальными ресурсами: **override.tf**,**override.tf.json**,**_override.tf**,**_override.tf.json**<br>
 Файлы конфигурации CLI: **.terraformrc**, **terraform.rc**<br>
 new line 02-base
+new line2 02-base
