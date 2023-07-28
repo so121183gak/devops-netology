@@ -13,12 +13,11 @@
 </p>
 
 #### 1.4. Замените имя docker-контейнера в блоке кода на hello_world, выполните команду terraform apply -auto-approve.
-Опасность заключается в том что идет не контролируемое действие, в данном конкретном случае мы удалили контейнер nginx1 так как забыли не сменили его название в скрипте, к тому же контейнер c названием **hello_world** отсутствует на docker hub и при его закачке мы получаем ошибку:
+Опасность заключается в том что идет не контролируемое действие, не смотря на то что мы сменили имя контейнеру, тем, мы тем не менее формируем его имя другим образом **example_${random_password.random_string.result}**, это значит что у нас на сервере уже есть контейнер с таким именем и команда **terraform apply -auto-approve** приведет к ниже указанной ошибке:
 ```
- Error: Unable to read Docker image into resource: unable to pull image hello_world: error pulling image hello_world: Error response from daemon: pull access denied for hello_world, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+Error: Unable to create container: Error response from daemon: Conflict. The container name "/example_YzfQevQpNhaL9jpD" is already in use by container "33083f6e8e633e56ce19331c87094689e7e79be9191ebb838be10b0aaaa2e5ae". You have to remove (or rename) that container to be able to reuse that name.
 ```
 
-Правильное название контейнера **hello-world**
 
 #### 1.5. Уничтожьте созданные ресурсы с помощью terraform.
 <p align="center">
