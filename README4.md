@@ -29,7 +29,9 @@ Netology test for Centos
 root@0324bddef388:/data# cat testPC.txt 
 Netology test for host PC
 ```
-
+### 4. Задача
+- Ссылка на репозиторий с образом Ansible
+https://hub.docker.com/repository/docker/so121183gak/ansible/general
 
 
 
