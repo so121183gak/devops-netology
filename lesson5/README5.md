@@ -135,5 +135,11 @@ e9632e837d17   gcr.io/cadvisor/cadvisor:v0.47.0   "/usr/bin/cadvisor -…"   30 
   <img width="800" height="400" src="./assets/yc_04.png">
 </p>
 
+### 5. Задача
+- Cкриншот из Grafana добавленного сервера
+<p align="center">
+  <img width="800" height="300" src="./assets/yc_06.png">
+</p>
+
 
 
