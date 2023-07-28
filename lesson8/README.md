@@ -113,7 +113,7 @@ resource "yandex_compute_instance" "db" {
   }
 ```
 
-### Задание 5
+### Задание 6
 - Вместо использования трёх переменных ".._cores",".._memory",".._core_fraction" в блоке resources {...}, объедините их в переменные типа map с именами "vm_web_resources" и "vm_db_resources".
 
 ```
