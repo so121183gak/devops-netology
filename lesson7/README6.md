@@ -11,13 +11,20 @@
 <p align="center">
   <img width="800" height="200" src="./assets/tr_01.png">
 </p>
+
 #### 1.4. Замените имя docker-контейнера в блоке кода на hello_world, выполните команду terraform apply -auto-approve.
 Опасность заключается в том что идет не контролируемое действие, в данном конкретном случае мы удалили контейнер nginx1 так как забыли не сменили его название в скрипте, к тому же контейнер c названием **hello_world** отсутствует на docker hub и при его закачке мы получаем ошибку:
 ```
  Error: Unable to read Docker image into resource: unable to pull image hello_world: error pulling image hello_world: Error response from daemon: pull access denied for hello_world, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
-```<br><br>
+```
 
-Правильное название контейнера **hello-world**, если мы полностью хотим переделать запуск **nginx** на **hello-world** то тогда нам следует изменить наш код:
+Правильное название контейнера **hello-world**
 
+#### 1.5. Уничтожьте созданные ресурсы с помощью terraform.
+<p align="center">
+  <img width="800" height="200" src="./assets/tr_02.png">
+</p>
 
+#### 1.6. Объясните, почему при этом не был удален docker образ nginx:latest ? 
 
+- Ответ: образ **nginx:latest** не был удален скорее всего потому что образ может быть использован при работе других контейнеров на той системе где мы разворачиваем инфраструктуру.
