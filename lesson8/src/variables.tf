@@ -31,14 +31,6 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
-
-###ssh vars
-
-/*variable "vms_ssh_root_key" {
-  type        = string
-  description = "ssh-keygen -t ed25519"
-}*/
-
 ###vm vars
 variable "vm_yandex_compute_instance_global_name" {
   type        = string
