@@ -9,7 +9,7 @@
 - Ответ **random_string_FAKE** не был объявлен в корневом модуле, я думаю такая запись не допускается синтаксисом, исправил на **random_string**.Так же как и запись **resulT** переделал на **result**
 #### 1.3. Выполните код. В качестве ответа приложите вывод команды docker ps
 <p align="center">
-  <img width="800" height="200" src="./assets/tr_01.png">
+  <img width="500" height="50" src="./assets/tr_01.png">
 </p>
 
 #### 1.4. Замените имя docker-контейнера в блоке кода на hello_world, выполните команду terraform apply -auto-approve.
