@@ -50,11 +50,6 @@ variable "vm_web_yandex_compute_image" {
   description = "OS image"
 }
 
-/*variable "vm_web_yandex_compute_instance" {
-  type        = tuple([string, number, number, number])
-  default     = ["standard-v1", 2, 1, 5]
-  description = "Instance envs"
-}*/
 variable "vm_yandex_compute_instance_standart" {
   type        = string
   default     = "standard-v1"
