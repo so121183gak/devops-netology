@@ -215,3 +215,5 @@ description = "Instance envs"
 ```
 metadata = merge(var.vm_metadata, local.vm_metadata_override)
 ```
+### Весь код можно посмотреть по ссылке
+https://github.com/so121183gak/devops-netology/tree/main/lesson8/src
