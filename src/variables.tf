@@ -28,60 +28,42 @@ variable "default_cidr" {
 variable "vpc_name" {
   type        = string
   default     = "develop"
-  description = "VPC network & subnet name"
+  description = "VPC network&subnet name"
 }
 
-###vm vars
-variable "vm_yandex_compute_instance_global_name" {
-  type        = string
-  default     = "netology-develop"
-  description = "Global name"
-}
+/*variable "public_key" {
+  type    = string
+}*/
 
-variable "vm_web_yandex_compute_instance_platform_name" {
-  type        = string
-  default     = "platform-web"
-  description = "Instance name"
-}
-
-variable "vm_web_yandex_compute_image" {
-  type        = string
-  default     = "ubuntu-2004-lts"
-  description = "OS image"
-}
-
-variable "vm_yandex_compute_instance_standart" {
-  type        = string
-  default     = "standard-v1"
-  description = "Instance envs"
-}
-
-variable "vm_resources" {
-type = map(map(number))
-default = {
-  web = {
-    cores         = 2
-    memory        = 1
-    core_fraction = 5
-  }
-  db = {
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
-  }
-}
-description = "Instance envs"
-}
-
-variable "vm_metadata" {
+variable "public_key" {
 type = object({
-  serial-port-enable = number
   ssh-keys           = string
 })
 default = {
-    serial-port-enable  = 1
     ssh-keys            = null
 }
 description = "Instance envs"
 }
 
+variable "vm_resources" {
+  type    = list(object({
+    vm_name       = string
+    cpu           = number
+    ram           = number
+    disk          = number
+  }))
+  default = [
+    {
+      vm_name       = "main"
+      cpu           = 4
+      ram           = 4
+      disk          = 5
+    },
+    {
+      vm_name       = "replica"
+      cpu           = 2
+      ram           = 2
+      disk          = 6
+    }
+  ]
+}
