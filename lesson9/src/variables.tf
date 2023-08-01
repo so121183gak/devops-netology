@@ -31,10 +31,6 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
-/*variable "public_key" {
-  type    = string
-}*/
-
 variable "public_key" {
 type = object({
   ssh-keys           = string

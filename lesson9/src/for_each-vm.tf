@@ -1,10 +1,6 @@
 
 resource "yandex_compute_instance" "vm" {
   for_each = { for key, val in var.vm_resources : key => val }
-  /*for_each = {
-    "vm1" = each.value.vm_name
-    "vm2" = each.value.vm_name
-  }*/
 
   name        = each.value.vm_name
   platform_id = "standard-v1"
