@@ -38,7 +38,6 @@ resource "yandex_compute_instance" "storage" {
   dynamic "secondary_disk" {
     for_each = yandex_compute_disk.vol.*.id
     content {
-      //device_name = secondary_disk.value.name
       disk_id     = secondary_disk.value
       mode        = "READ_WRITE"
     }
