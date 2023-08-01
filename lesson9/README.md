@@ -200,5 +200,9 @@ ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
   <img width="700" height="" src="./assets/tr_03_02.png">
 </p>
 
+- Для общего зачёта создайте в вашем GitHub-репозитории новую ветку terraform-03. Закоммитьте в эту ветку свой финальный код проекта, пришлите ссылку на коммит.
+https://github.com/so121183gak/devops-netology/compare/main...terraform-03
+
+
 ### Весь код можно посмотреть по ссылке
-https://github.com/so121183gak/devops-netology/tree/main/lesson8/src
+https://github.com/so121183gak/devops-netology/tree/terraform-03/src
