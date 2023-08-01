@@ -116,7 +116,7 @@ description = "Instance envs"
 - Создайте 3 одинаковых виртуальных диска размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле disk_vm.tf.
 
 ```
-resource "yandex_compute_disk" "disk" {
+resource "yandex_compute_disk" "vol" {
   name        = "disk-${count.index + 1}"
 
   count = 3
@@ -197,7 +197,7 @@ ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
 </p>
 
 - Для общего зачёта создайте в вашем GitHub-репозитории новую ветку terraform-03. Закоммитьте в эту ветку свой финальный код проекта, пришлите ссылку на коммит.
-https://github.com/so121183gak/devops-netology/compare/main...terraform-03
+https://github.com/so121183gak/devops-netology/commit/9b5990f6b8a7798382f6c25475a2e019915039c8
 
 
 ### Весь код можно посмотреть по ссылке
