@@ -197,7 +197,7 @@ ${i["name"]}   ansible_host=${i["network_interface"][0]["nat_ip_address"]}
 </p>
 
 - Для общего зачёта создайте в вашем GitHub-репозитории новую ветку terraform-03. Закоммитьте в эту ветку свой финальный код проекта, пришлите ссылку на коммит.
-https://github.com/so121183gak/devops-netology/commit/9b5990f6b8a7798382f6c25475a2e019915039c8
+https://github.com/so121183gak/devops-netology/commit/3a4c3cd0f15e6b318d63f5bc109dea60df620350
 
 
 ### Весь код можно посмотреть по ссылке
