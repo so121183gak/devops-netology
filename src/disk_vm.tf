@@ -27,7 +27,7 @@ resource "yandex_compute_instance" "storage" {
     }   
   }
 
-  metadata = merge(var.public_key, local.public_key_override)
+  metadata = {ssh-keys = "ubuntu:${local.ssh-keys}"}
 
   scheduling_policy { preemptible = true }
 
@@ -38,6 +38,7 @@ resource "yandex_compute_instance" "storage" {
   dynamic "secondary_disk" {
     for_each = yandex_compute_disk.vol.*.id
     content {
+      //device_name = secondary_disk.value.name
       disk_id     = secondary_disk.value
       mode        = "READ_WRITE"
     }
