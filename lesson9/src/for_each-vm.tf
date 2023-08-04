@@ -23,10 +23,7 @@ resource "yandex_compute_instance" "vm" {
   }
   
   depends_on = [yandex_compute_instance.web]
-  metadata = merge(var.public_key, local.public_key_override)
-
-  /*metadata = {
-    ssh-keys           = var.public_key
-  }*/
+  metadata = {ssh-keys = "ubuntu:${local.ssh-keys}"}
 
 }
+

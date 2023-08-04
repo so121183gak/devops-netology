@@ -18,10 +18,7 @@ resource "yandex_compute_instance" "web" {
     }   
   }
 
-  /*metadata = {
-    ssh-keys = "ubuntu:${var.public_key}"
-  }*/
-  metadata = merge(var.public_key, local.public_key_override)
+  metadata = {ssh-keys = "ubuntu:${local.ssh-keys}"}
 
   scheduling_policy { preemptible = true }
 
