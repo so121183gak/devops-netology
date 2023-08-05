@@ -208,4 +208,4 @@ terraform plan
 </p>
 
 ### Весь код можно посмотреть по ссылке
-https://github.com/so121183gak/devops-netology/tree/terraform-03/src
+https://github.com/so121183gak/devops-netology/tree/terraform-04/src
