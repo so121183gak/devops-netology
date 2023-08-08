@@ -9,4 +9,4 @@
 # own secret vars store.
 personal.auto.tfvars
 
-src/.external_modules/github.com/udjin10/yandex_compute_instance/95c286e0062805d5ba5edb866f387247bc1bbd44
+.external_modules
