@@ -19,7 +19,7 @@ module "vpc_dev" {
 }
 
 module "test-vm" {
-  source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source          = "git//github.com/udjin10/yandex_compute_instance.git?ref=95c286e0062805d5ba5edb866f387247bc1bbd44"
   env_name        = "develop"
   network_id      = module.vpc_dev.net_id
   subnet_zones    = ["ru-central1-a"]
