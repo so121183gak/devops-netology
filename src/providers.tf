@@ -2,6 +2,11 @@ terraform {
   required_providers {
     yandex = {
       source = "yandex-cloud/yandex"
+      version = "~> 0.96"
+    }
+    template = {
+      source  = "hashicorp/template"
+      version = "~> 2.2"
     }
   }
   required_version = ">=0.13"
@@ -16,6 +21,7 @@ terraform {
   dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/b1gu25rsl7bcn0ehonom/etn3i9g9elhg5kd71meq"
   dynamodb_table = "tfstate-5-table"
 }
+
 }
 
 provider "yandex" {
@@ -24,3 +30,4 @@ provider "yandex" {
   folder_id = var.folder_id
   zone      = var.default_zone
 }
+
