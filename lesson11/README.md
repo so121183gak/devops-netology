@@ -108,6 +108,18 @@ https://github.com/so121183gak/devops-netology/pull/2
 ### Задание 4
 - Напишите переменные с валидацией и протестируйте их, заполнив default верными и неверными значениями. Предоставьте скриншоты проверок из terraform console
 
+```
+variable "test_ip" {
+  type        = string
+  default     = "192.168.0.1"
+  description = "ip-адрес"
+  validation {
+    condition = can(regex("^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$", var.test_ip))
+    error_message = "Invalip IP adres"
+  }
+}
+```
+
 - type=string, description="ip-адрес" — проверка, что значение переменной содержит верный IP-адрес с помощью функций cidrhost() или regex(). Тесты: "192.168.0.1" и "1920.1680.0.1";
 
 <p align="center">
@@ -118,6 +130,17 @@ https://github.com/so121183gak/devops-netology/pull/2
   <img width="600" height="" src="./assets/tr_05_12.png">
 </p>
 
+```
+variable "test_list_ip" {
+  type        = list(string)
+  default     = ["192.168.0.1", "1.1.1.1", "127.0.0.1"]
+  description = "список ip-адресов"
+  validation {
+    condition = can([for ip in var.test_list_ip : regex("^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$", ip)])
+    error_message = "Invalip IP adres"
+  }
+}
+```
 - type=list(string), description="список ip-адресов" — проверка, что все адреса верны. Тесты: ["192.168.0.1", "1.1.1.1", "127.0.0.1"] и ["192.168.0.1", "1.1.1.1", "1270.0.0.1"].
 
 <p align="center">
