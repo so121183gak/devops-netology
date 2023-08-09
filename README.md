@@ -1,211 +1,132 @@
-# Продвинутые методы работы с Terraform
+# Использование Terraform в команде
 
 ### Задание 1
-- Возьмите из демонстрации к лекции готовый код для создания ВМ с помощью remote-модуля. Создайте одну ВМ, используя этот модуль.
-```
-module "test-vm" {
-  source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
-  env_name        = "develop"
-  network_id      = yandex_vpc_network.develop.id
-  subnet_zones    = ["ru-central1-a"]
-  subnet_ids      = [ yandex_vpc_subnet.develop.id ]
-  instance_name   = "web"
-  instance_count  = 1
-  image_family    = "ubuntu-2004-lts"
-  public_ip       = true
-  
-  metadata = {
-      user-data          = data.template_file.cloudinit.rendered
-      serial-port-enable = 1
-  }
+- Проверьте код с помощью tflint и checkov. Перечислите, какие типы ошибок обнаружены в проекте (без дублей).
 
-}
+**TFlint**
 ```
-- В файле cloud-init.yml необходимо использовать переменную для ssh-ключа вместо хардкода.
-```
-#cloud-config
-users:
-  - name: ubuntu
-    groups: sudo
-    shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh_authorized_keys:
-      - ${ssh_public_key}
-package_update: true
-package_upgrade: false
-packages:
- - vim
-```
-- Передайте ssh-ключ в функцию template_file в блоке vars ={}.
-```
-data "template_file" "cloudinit" {
- template = file("./cloud-init.yml")
- vars = {
-   ssh_public_key = file("~/.ssh/id_ed25519.pub")
- }
-}
+Warning: Missing version constraint for provider "yandex" in `required_providers` (terraform_required_providers)
 
+  on main.tf line 3:
+   3:     yandex = {
+   4:       source = "yandex-cloud/yandex"
+   5:     }
+
+Warning: Module source "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main" uses a default branch as ref (main) (terraform_module_pinned_source)
+
+  on main.tf line 33:
+  33:   source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+
+Warning: [Fixable] variable "vpc_name" is declared but not used (terraform_unused_declarations)
+
+  on variables.tf line 28:
+  28: variable "vpc_name" {
 ```
-- Добавьте в файл cloud-init.yml установку nginx.
+
+**Checkov**
 ```
-#cloud-config
-users:
-  - name: ubuntu
-    groups: sudo
-    shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh_authorized_keys:
-      - ${ssh_public_key}
-package_update: true
-package_upgrade: false
-packages:
- - vim
- - nginx
-```
-- Предоставьте скриншот подключения к консоли и вывод команды sudo nginx -t.
-<p align="center">
-  <img width="500" height="" src="./assets/tr_04_01.png">
-</p>
+Check: CKV_YC_2: "Ensure compute instance does not have public IP."
+        FAILED for resource: module.test-vm.yandex_compute_instance.vm[0]
+        File: /.external_modules/github.com/udjin10/yandex_compute_instance/main/main.tf:24-73
+        Calling File: /main.tf:32-48
+
+Check: CKV_YC_11: "Ensure security group is assigned to network interface."
+        FAILED for resource: module.test-vm.yandex_compute_instance.vm[0]
+        File: /.external_modules/github.com/udjin10/yandex_compute_instance/main/main.tf:24-73
+        Calling File: /main.tf:32-48
+
+Check: CKV_TF_1: "Ensure Terraform module sources use a commit hash"
+        FAILED for resource: test-vm
+        File: /main.tf:32-48
 
 
+```
 
 ### Задание 2
-- Напишите локальный модуль vpc, который будет создавать 2 ресурса: одну сеть и одну подсеть в зоне, объявленной при вызове модуля, например: ru-central1-a.
+- Повторите демонстрацию лекции: настройте YDB, S3 bucket, yandex service account, права доступа и мигрируйте state проекта в S3 с блокировками. Предоставьте скриншоты процесса в качестве ответа.
 
-```
-resource "yandex_vpc_network" "net" {
-  name = var.net_name
-}
-
-resource "yandex_vpc_subnet" "subnet" {
-  name           = var.subnet_name
-  zone           = var.zone
-  network_id     = yandex_vpc_network.net.id
-  v4_cidr_blocks = var.cidr
-}
-```
-- Вы должны передать в модуль переменные с названием сети, zone и v4_cidr_blocks.
-
-```
-module "vpc_dev" {
-  source       = "./vpc_dev"
-  net_name     = "testing"
-  subnet_name  = "test1"
-  zone = "ru-central1-a"
-  cidr = ["10.0.1.0/24"]
-}
-```
-- Модуль должен возвращать в root module с помощью output информацию о yandex_vpc_subnet. Пришлите скриншот информации из terraform console о своем модуле.
-
-```
-output "net_id" {
-    value = yandex_vpc_subnet.net.id
-}
-
-output "subnet_id" {
-    value = yandex_vpc_subnet.subnet.id
-}
-
-output "subnet_zone" {
-    value = yandex_vpc_subnet.subnet.zone
-}
-```
 <p align="center">
-  <img width="500" height="" src="./assets/tr_04_02.png">
+  <img width="600" height="" src="./assets/tr_05_01.png">
 </p>
 
-- Замените ресурсы yandex_vpc_network и yandex_vpc_subnet созданным модулем. Не забудьте передать необходимые параметры сети из модуля vpc в модуль с виртуальной машиной.
-```
-module "test-vm" {
-  source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
-  env_name        = "develop"
-  network_id      = module.vpc_dev.net_id
-  subnet_zones    = ["ru-central1-a"]
-  subnet_ids      = [ module.vpc_dev.subnet_id ]
-  instance_name   = "web"
-  instance_count  = 1
-  image_family    = "ubuntu-2004-lts"
-  public_ip       = true
-  
-  metadata = {
-      user-data          = data.template_file.cloudinit.rendered
-      serial-port-enable = 1
-  }
-
-}
-```
 <p align="center">
-  <img width="500" height="" src="./assets/tr_04_03.png">
+  <img width="600" height="" src="./assets/tr_05_02.png">
 </p>
 
-- Сгенерируйте документацию к модулю с помощью terraform-docs.</br>
-[TER_DOC.md](./TER_DOC.md)
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_03.png">
+</p>
+
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_04.png">
+</p>
+
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_05.png">
+</p>
+
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_06.png">
+</p>
+
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_07.png">
+</p>
+
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_08.png">
+</p>
+
+- Откройте в проекте terraform console, а в другом окне из этой же директории попробуйте запустить terraform apply.
+Пришлите ответ об ошибке доступа к state.
+
+<p align="center">
+  <img width="600" height="" src="./assets/tr_05_09.png">
+</p>
+
+- Принудительно разблокируйте state. Пришлите команду и вывод.
+```
+terraform force-unlock 0f846994-70aa-05e1-b94c-8fe08fc019e3
+Do you really want to force-unlock?
+  Terraform will remove the lock on the remote state.
+  This will allow local Terraform commands to modify this state, even though it
+  may still be in use. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+Terraform state has been successfully unlocked!
+
+The state has been unlocked, and Terraform commands should now be able to
+obtain a new lock on the remote state.
+
+```
 
 ### Задание 3
-- Выведите список ресурсов в стейте.
-```
-terraform state list
-data.template_file.cloudinit
-module.test-vm.data.yandex_compute_image.my_image
-module.test-vm.yandex_compute_instance.vm[0]
-module.vpc_dev.yandex_vpc_network.net
-module.vpc_dev.yandex_vpc_subnet.subnet
-```
+- Пришлите ссылку на PR для ревью.
+https://github.com/so121183gak/devops-netology/pull/2
+
+### Задание 4
+- Напишите переменные с валидацией и протестируйте их, заполнив default верными и неверными значениями. Предоставьте скриншоты проверок из terraform console
+
+- type=string, description="ip-адрес" — проверка, что значение переменной содержит верный IP-адрес с помощью функций cidrhost() или regex(). Тесты: "192.168.0.1" и "1920.1680.0.1";
+
 <p align="center">
-  <img width="500" height="" src="./assets/tr_04_04.png">
+  <img width="600" height="" src="./assets/tr_05_11.png">
 </p>
 
-- Полностью удалите из стейта модуль vpc.
-```
-terraform state rm module.vpc_dev
-Removed module.vpc_dev.yandex_vpc_network.net
-Removed module.vpc_dev.yandex_vpc_subnet.subnet
-Successfully removed 2 resource instance(s).
-```
 <p align="center">
-  <img width="500" height="" src="./assets/tr_04_05.png">
+  <img width="600" height="" src="./assets/tr_05_12.png">
 </p>
 
-- Полностью удалите из стейта модуль vm.
-```
-terraform state rm module.test-vm
-Removed module.test-vm.data.yandex_compute_image.my_image
-Removed module.test-vm.yandex_compute_instance.vm[0]
-Successfully removed 2 resource instance(s).
-```
+- type=list(string), description="список ip-адресов" — проверка, что все адреса верны. Тесты: ["192.168.0.1", "1.1.1.1", "127.0.0.1"] и ["192.168.0.1", "1.1.1.1", "1270.0.0.1"].
+
 <p align="center">
-  <img width="500" height="" src="./assets/tr_04_06.png">
+  <img width="600" height="" src="./assets/tr_05_13.png">
 </p>
 
-- Импортируйте всё обратно. Проверьте terraform plan. Изменений быть не должно. Приложите список выполненных команд и скриншоты процессы.
-
-```
-terraform import module.vpc_dev.yandex_vpc_network.net enpvo99gkh36et3513nv
-```
 <p align="center">
-  <img width="500" height="" src="./assets/tr_04_07.png">
-</p>
-
-```
-terraform import module.vpc_dev.yandex_vpc_subnet.subnet e9brekefglj5sbk7ve4m
-```
-<p align="center">
-  <img width="500" height="" src="./assets/tr_04_08.png">
-</p>
-
-```
-terraform import module.test-vm.yandex_compute_instance.vm[0] fhmlouelan51760hvl4q
-```
-<p align="center">
-  <img width="500" height="" src="./assets/tr_04_09.png">
-</p>
-
-```
-terraform plan
-```
-<p align="center">
-  <img width="500" height="" src="./assets/tr_04_10.png">
+  <img width="600" height="" src="./assets/tr_05_14.png">
 </p>
 
 ### Весь код можно посмотреть по ссылке
-https://github.com/so121183gak/devops-netology/tree/terraform-04/src
+https://github.com/so121183gak/devops-netology/tree/terraform-05/src
