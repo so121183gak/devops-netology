@@ -45,5 +45,24 @@ variable "vm_db_name" {
   description = "example vm_db_ prefix"
 }
 
+variable "test_ip" {
+  type        = string
+  default     = "192.168.0.1"
+  description = "ip-адрес"
+  validation {
+    condition = can(regex("^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$", var.test_ip))
+    error_message = "Invalip IP adres"
+  }
+}
+
+variable "test_list_ip" {
+  type        = list(string)
+  default     = ["192.168.0.1", "1.1.1.1", "127.0.0.1"]
+  description = "список ip-адресов"
+  validation {
+    condition = can([for ip in var.test_list_ip : regex("^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$", ip)])
+    error_message = "Invalip IP adres"
+  }
+}
 
 
