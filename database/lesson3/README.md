@@ -80,7 +80,7 @@ Empty set, 1 warning (0.00 sec)
 SHOW TABLE STATUS WHERE NAME = "orders";
 ```
 <p align="center">
-  <img width="600" height="" src="./assets/db_03_01.png">
+  <img width="900" height="" src="./assets/db_03_01.png">
 </p>
 
 - Измените engine и приведите время выполнения и запрос на изменения из профайлера в ответе:
