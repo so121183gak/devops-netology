@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  mysql_db:
+    container_name: mysql_8
+    image: mysql:8
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: stage
+      MYSQL_USER: madmin
+      MYSQL_PASSWORD: pass
+    volumes:
+      - ./dbdata:/var/lib/mysql/
