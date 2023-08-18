@@ -84,4 +84,4 @@ local:
 </p>
 
 ### Весь код можно посмотреть по ссылке
-https://github.com/so121183gak/devops-netology/tree/terraform-05/src
+https://github.com/so121183gak/devops-netology/tree/main/ansible/lesson1/src
