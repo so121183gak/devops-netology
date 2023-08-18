@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  ubuntu:
+    image: pycontribs/ubuntu
+    container_name: ubuntu
+    entrypoint: "sleep infinity"
+    restart: on-failure
+
+
+  centos7:
+    image: pycontribs/centos:7
+    container_name: centos7
+    entrypoint: "sleep infinity"
+    restart: on-failure
+
+  fedora:
+    image: pycontribs/fedora
+    container_name: fedora
+    entrypoint: "sleep infinity"
+    restart: on-failure
+
+
