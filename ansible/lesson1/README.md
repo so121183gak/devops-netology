@@ -74,6 +74,12 @@ local:
 </p>
 
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать этот вариант.
+```
+fed:
+  hosts:
+    fedora:
+      ansible_connection: docker
+```
 <p align="center">
   <img width="600" height="" src="./assets/an_01_13.png">
 </p>
