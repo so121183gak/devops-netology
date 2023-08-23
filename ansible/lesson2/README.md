@@ -112,3 +112,6 @@ Failed after min profile: 6 failure(s), 1 warning(s) on 1 files
 
 ### Весь код можно посмотреть по ссылке
 https://github.com/so121183gak/devops-netology/tree/main/ansible/lesson2/src
+
+### Документацию по playbook можно посмотреть по ссылке
+https://github.com/so121183gak/devops-netology/tree/main/ansible/lesson2/PLAYBOOK.md
