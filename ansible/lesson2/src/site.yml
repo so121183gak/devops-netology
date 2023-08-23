@@ -40,6 +40,12 @@
 
 - name: Install Vector
   hosts: vector
+  handlers:
+    - name: reload vector
+      become: true
+      ansible.builtin.service:
+        name: vector
+        state: restarted
   tasks:
     - name: Get vector distrib
       ansible.builtin.get_url:
@@ -60,3 +66,6 @@
         owner: "{{ ansible_user_id }}"
         group: "{{ ansible_user_gid }}"
         validate: vector validate --no-environment --config-yaml %s
+      notify: reload vector
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers
