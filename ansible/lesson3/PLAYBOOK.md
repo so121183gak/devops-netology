@@ -9,6 +9,8 @@ ansible-playbook -i  <inventory-path>/prod.yml site.yml
 ```
 
 ## Tags (теги)
+В данном playbook доступны следующие теги:
+
 | Тег | Описание |
 | :-----:|:-----:|
 | `clickhouse` | Скачает и установит clickhouse нужной версии и создаст базу данных с таблицей |
