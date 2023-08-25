@@ -1,0 +1,4 @@
+---
+lighthouse_src: "https://github.com/VKCOM/lighthouse.git"
+lighthouse_dst: "/usr/share/nginx/html/lighthouse"
+nginx_user_name: "root"
