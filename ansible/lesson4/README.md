@@ -15,7 +15,10 @@
 </p>
 
 6. Опишите в README.md обе роли и их параметры.
+
+https://github.com/so121183gak/ansible-lighthouse-role/blob/master/README.md
 https://github.com/so121183gak/ansible-vector-role/blob/master/README.md
+
 
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
 <p align="center">
