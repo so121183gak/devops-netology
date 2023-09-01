@@ -26,6 +26,10 @@ https://github.com/so121183gak/ansible-vector-role/blob/master/README.md
   <img width="600" height="" src="./assets/an_04_03.png">
 </p>
 
+<p align="center">
+  <img width="600" height="" src="./assets/an_04_04.png">
+</p>
+
 
 
 ### ССылка на роль Vector
