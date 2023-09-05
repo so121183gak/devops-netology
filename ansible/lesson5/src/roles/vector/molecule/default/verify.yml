@@ -1,0 +1,39 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+# - name: Verify
+#   hosts: all
+#   gather_facts: false
+#   tasks:
+#   - name: Example assertion
+#     assert:
+#       that: true
+
+- name: Verify
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Include vector role
+      include_role:
+        name: vector
+
+    - name: Check vector service
+      assert:
+        that: vector_pid.stdout != 0
+        success_msg: "Service is running"
+        fail_msg: "Service not running FAIL"
+
+    - name: Check vector config
+      assert:
+        that: valid_config.rc == 0
+        success_msg: "Vector config valid"
+        fail_msg: "Vector config not valid FAIL"
+
+    # - name: Execute playbook and save return code
+    #   command: ansible-playbook my_playbook.yml
+    #   register: playbook_result
+
+    # - name: Assert that playbook executed successfully
+    #   assert:
+    #     that: "'{{ playbook_result.rc }}' == '0'"
+    #     fail_msg: "Playbook execution failed"
