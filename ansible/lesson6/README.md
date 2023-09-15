@@ -25,8 +25,23 @@ module = AnsibleModule(
 path = module.params['path']
 content = module.params['content']
 
-with open(path, "w") as file:
-    file.write(content)
+existing_content = ""
+
+try:
+    with open(path, "r") as file:
+        existing_content = file.read()
+except FileNotFoundError:
+    pass
+
+existing_checksum = hashlib.md5(existing_content.encode()).hexdigest()
+new_checksum = hashlib.md5(content.encode()).hexdigest()
+
+if existing_checksum != new_checksum:
+    result['changed'] = True
+    with open(path, "w") as file:
+        file.write(content)
+else:
+    result['changed'] = False
 ```
 
 4. Проверьте module на исполняемость локально.
