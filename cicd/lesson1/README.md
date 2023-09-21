@@ -35,7 +35,7 @@
 </p>
 
 Файл XML 
-https://github.com/so121183gak/devops-netology/tree/main/cicd/lesson1/src/cicd/lesson1/src/Workflow_for_Bug_Project_KAN.xml
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson1/src/Workflow_for_Bug_Project_KAN.xml
 
 <br>
 
@@ -45,5 +45,5 @@ https://github.com/so121183gak/devops-netology/tree/main/cicd/lesson1/src/cicd/l
 </p>
 
 Файл XML 
-https://github.com/so121183gak/devops-netology/tree/main/cicd/lesson1/src/cicd/lesson1/src/Workflow_for_Other_Project_KAN.xml
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson1/src/Workflow_for_Other_Project_KAN.xml
 
