@@ -47,7 +47,7 @@
 
   4. В ответе пришлите файл maven-metadata.xml для этого артефакта.
 
-https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson2/src/maven-metadata.xml
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson3/src/maven-metadata.xml
 
 
 ## Знакомство с Maven
@@ -65,5 +65,5 @@ https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson2/src/maven-
 </p>
 
   4. В ответе пришлите исправленный файл pom.xml.
-https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson2/src/pom.xml
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson3/src/pom.xml
 
