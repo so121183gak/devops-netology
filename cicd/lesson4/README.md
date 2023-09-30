@@ -1,9 +1,5 @@
 # Jenkins
-
-## Знакомоство с SonarQube
-
 ### Основная часть
-
 
   1. Сделать Freestyle Job, который будет запускать molecule test из любого вашего репозитория с ролью.
 <p align="center">
