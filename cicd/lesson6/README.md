@@ -32,7 +32,8 @@
 </p>
 
 ##### Лог сборки
-https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/src/ProductOwner.log
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/ProductOwner.log
+
 
 
 #### Developer
@@ -50,7 +51,7 @@ https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/src/Produc
 </p>
 
 ##### Лог сборки
-https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/src/Developer.log
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/Developer.log
 
 
 #### Tester
@@ -75,7 +76,7 @@ https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/src/Develo
 </p>
 
 ##### Лог сборки
-https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/src/Tester.log
+https://github.com/so121183gak/devops-netology/blob/main/cicd/lesson6/Tester.log
 
 
 ### Исходный код
