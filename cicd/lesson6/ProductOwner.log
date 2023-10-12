@@ -1,0 +1,47 @@
+Running with gitlab-runner 16.4.1 (d89a789a)
+  on test-runner 8GfjiXee, system ID: s_e72cc9c6d3d9
+Preparing the "shell" executor 00:00
+Using Shell (bash) executor...
+Preparing environment 00:00
+Running on gitlub-runner.ru-central1.internal...
+Getting source from Git repository 00:11
+Fetching changes with git depth set to 20...
+Initialized empty Git repository in /home/gitlab-runner/builds/8GfjiXee/0/main293/tests/.git/
+Created fresh repository.
+Checking out 26c7738d as detached HEAD (ref is 1-json-ge)...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script 00:03
+$ docker build -t $CI_REGISTRY_IMAGE/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+#0 building with "default" instance using docker driver
+#1 [internal] load .dockerignore
+#1 transferring context: 2B done
+#1 DONE 0.1s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 416B done
+#2 DONE 0.2s
+#3 [internal] load metadata for docker.io/library/centos:7
+#3 DONE 1.3s
+#4 [1/6] FROM docker.io/library/centos:7@sha256:be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 618B done
+#5 DONE 0.0s
+#6 [2/6] WORKDIR /python_api
+#6 CACHED
+#7 [3/6] RUN yum install python3 python3-pip -y
+#7 CACHED
+#8 [4/6] COPY requirements.txt requirements.txt
+#8 CACHED
+#9 [5/6] RUN pip3 install -r requirements.txt
+#9 CACHED
+#10 [6/6] COPY python-api.py python-api.py
+#10 DONE 0.7s
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.4s done
+#11 writing image sha256:1d6536207a1da10e640ecdac6e70531dca9e72e452a1c8079e0b0f54fbdbcf83 0.1s done
+#11 naming to registry.gitlab.com/main293/tests/hello:gitlab-26c7738d
+#11 naming to registry.gitlab.com/main293/tests/hello:gitlab-26c7738d 0.1s done
+#11 DONE 0.5s
+Cleaning up project directory and file based variables 00:00
+Job succeeded

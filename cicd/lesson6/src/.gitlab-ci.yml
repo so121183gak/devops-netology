@@ -1,0 +1,44 @@
+stages:
+  - build
+  - deploy
+
+.build:
+  stage: build
+  image: docker:20.10.5
+  services:
+    - docker:20.10.5-dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+  tags:
+    - test-runner
+
+build.test:
+  extends: .build
+  variables:
+    GIT_STRATEGY: clone
+  except:
+    - main
+
+
+
+.deploy:
+  stage: deploy
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - echo "$CI_REGISTRY"
+    - docker build -t $CI_REGISTRY_IMAGE/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+    - docker push $CI_REGISTRY_IMAGE/hello:gitlab-$CI_COMMIT_SHORT_SHA
+  tags:
+    - test-runner
+
+
+deploy.test:
+  extends: .deploy
+  variables:
+    GIT_STRATEGY: clone
+  only:
+    - main
+
+
+
