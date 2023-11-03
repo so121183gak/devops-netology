@@ -58,6 +58,7 @@ node_filesystem_avail_bytes{device="/dev/sdc2", fstype="ext4", instance="nodeexp
 1. Создайте для каждой Dashboard подходящее правило alert — можно обратиться к первой лекции в блоке «Мониторинг».
 2. В качестве решения задания приведите скриншот вашей итоговой Dashboard.
 
+- Ответ:
 <p align="center">
   <img width="600" height="" src="./assets/monit_02_03.png">
 </p>
@@ -67,4 +68,5 @@ node_filesystem_avail_bytes{device="/dev/sdc2", fstype="ext4", instance="nodeexp
 1. Сохраните ваш Dashboard.Для этого перейдите в настройки Dashboard, выберите в боковом меню «JSON MODEL». Далее скопируйте отображаемое json-содержимое в отдельный файл и сохраните его.
 2. В качестве решения задания приведите листинг этого файла.
 
+- Ответ:
 https://github.com/so121183gak/devops-netology/tree/main/monitoring/lesson2/src/Json-model.json
