@@ -53,7 +53,7 @@
   <img width="600" height="" src="./assets/mi_04_03.png">
 </p>
 
-Пользоваться им довольно просто необходимо в **group_vars** прописать креды для ваших шардов.
+Пользоваться им довольно просто необходимо в **inventory** прописать креды для ваших шардов.
 
 ### Весь код можно посмотреть по ссылке
 https://github.com/so121183gak/devops-netology/tree/main/microservices/lesson4/src
