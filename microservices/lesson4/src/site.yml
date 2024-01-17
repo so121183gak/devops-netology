@@ -1,0 +1,102 @@
+---
+- name: Install Redis
+  hosts: all
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    redis_configs:
+      node2:
+        config_src: node2.conf
+        config_dest: /etc/redis/node2.conf
+      node3:
+        config_src: node3.conf
+        config_dest: /etc/redis/node3.conf
+  tasks:
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Install required system packages and Redis
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'lsb-release', 'curl', 'gpg', 'redis', 'ruby-full']
+
+- name: Config Shard 1
+  hosts: shard1
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Redis create config 1
+      become: true
+      ansible.builtin.template:
+        src: templates/node1.conf
+        dest: /etc/redis/node1.conf
+        mode: "0644"
+
+    - name: Redis create config 2
+      become: true
+      ansible.builtin.template:
+        src: templates/node4.conf
+        dest: /etc/redis/node4.conf
+        mode: "0644"
+
+    - name: start redis
+      shell: |
+        redis-server /etc/redis/node1.conf --daemonize yes
+        redis-server /etc/redis/node4.conf --daemonize yes
+
+
+- name: Config Shard 2
+  hosts: shard2
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Redis create config 1
+      become: true
+      ansible.builtin.template:
+        src: templates/node2.conf
+        dest: /etc/redis/node2.conf
+        mode: "0644"
+
+    - name: Redis create config 2
+      become: true
+      ansible.builtin.template:
+        src: templates/node5.conf
+        dest: /etc/redis/node5.conf
+        mode: "0644"
+
+    - name: start redis
+      shell: |
+        redis-server /etc/redis/node2.conf --daemonize yes
+        redis-server /etc/redis/node5.conf --daemonize yes
+
+- name: Config Shard 3
+  hosts: shard3
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Redis create config 1
+      become: true
+      ansible.builtin.template:
+        src: templates/node3.conf
+        dest: /etc/redis/node3.conf
+        mode: "0644"
+
+    - name: Redis create config 2
+      become: true
+      ansible.builtin.template:
+        src: templates/node6.conf
+        dest: /etc/redis/node6.conf
+        mode: "0644"
+
+    - name: Start Redis
+      shell: |
+        redis-server /etc/redis/node3.conf --daemonize yes
+        redis-server /etc/redis/node6.conf --daemonize yes
+
+    - name: Run Redis Cluster
+      command: "redis-cli --cluster create {{ hostvars['node1'].ansible_host }}:7001 {{ hostvars['node2'].ansible_host }}:7002 {{ hostvars['node3'].ansible_host }}:7003 {{ hostvars['node1'].ansible_host }}:7004 {{ hostvars['node2'].ansible_host }}:7005 {{ hostvars['node3'].ansible_host }}:7006 --cluster-replicas 1"
+      args:
+        stdin: "yes\n"
+    

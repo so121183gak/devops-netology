@@ -1,0 +1,22 @@
+---
+all:
+  children:
+      shard1:
+        hosts:
+          node1:
+            ansible_host: 192.168.0.35
+            ansible_user: login
+            ansible_sudo_pass: pass
+      shard2:
+        hosts:
+          node2:
+            ansible_host: 192.168.0.59
+            ansible_user: login
+            ansible_sudo_pass: pass
+      shard3:
+        hosts:
+          node3:
+            ansible_host: 192.168.0.60
+            ansible_user: login
+            ansible_sudo_pass: pass
+
