@@ -39,7 +39,7 @@
         dest: /etc/redis/node4.conf
         mode: "0644"
 
-    - name: start redis
+    - name: Start Redis
       shell: |
         redis-server /etc/redis/node1.conf --daemonize yes
         redis-server /etc/redis/node4.conf --daemonize yes
@@ -65,7 +65,7 @@
         dest: /etc/redis/node5.conf
         mode: "0644"
 
-    - name: start redis
+    - name: Start Redis
       shell: |
         redis-server /etc/redis/node2.conf --daemonize yes
         redis-server /etc/redis/node5.conf --daemonize yes
