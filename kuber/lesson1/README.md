@@ -59,7 +59,7 @@
   <img width="600" height="" src="./assets/kuber_01_10.png">
 </p>
 
-- Выдкргиваем токен 
+- Выдергиваем токен 
 
 <p align="center">
   <img width="600" height="" src="./assets/kuber_01_11.png">
