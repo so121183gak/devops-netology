@@ -38,11 +38,11 @@ spec:
 ```
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_01.png">
-</p
+</p>
 
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_02.png">
-</p
+</p>
 </br>
 
 2. После запуска увеличить количество реплик работающего приложения до 2.
@@ -50,7 +50,7 @@ spec:
 
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_03.png">
-</p
+</p>
 </br>
 
 
@@ -58,11 +58,11 @@ spec:
 
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_04.png">
-</p
+</p>
 
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_05.png">
-</p
+</p>
 </br>
 
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью curl, что из пода есть доступ до приложений из п.1.
@@ -72,7 +72,7 @@ pod/multitool-only created
 ```
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_06.png">
-</p
+</p>
 </br>
 
 
@@ -127,7 +127,7 @@ spec:
 ```
 <p align="center">
   <img width="600" height="" src="./assets/kuber_03_07.png">
-</p
+</p>
 </br>
 
 
