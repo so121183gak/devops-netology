@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-back-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-back
+  template:
+    metadata:
+      labels:
+        app: web-app-back
+    spec:
+      containers:
+      - name: back-multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 80
+          name: back-port
