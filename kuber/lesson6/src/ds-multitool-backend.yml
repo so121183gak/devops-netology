@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: web-app-back-deployment
+  labels:
+    app: web-app-back
+spec:
+  selector:
+    matchLabels:
+      app: web-app-back
+  template:
+    metadata:
+      labels:
+        app: web-app-back
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: syslog
+          mountPath: /syslog
+      volumes:
+      - name: syslog
+        hostPath:
+          path: /var/log/syslog
+
