@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-back-deployment
+  labels:
+    app: web-app-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-back
+  template:
+    metadata:
+      labels:
+        app: web-app-back
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: static
+          mountPath: /static
+      volumes:
+      - name: static
+        persistentVolumeClaim:
+          claimName: pvc-nfs-spec
+

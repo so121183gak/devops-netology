@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-back-deployment
+  labels:
+    app: web-app-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-back
+  template:
+    metadata:
+      labels:
+        app: web-app-back
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', '-c', 'while true; do echo "Testing" >> /static/test.txt; sleep 5; done']
+        volumeMounts:
+        - name: static
+          mountPath: /static
+      - name: multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: static
+          mountPath: /static
+      volumes:
+      - name: static
+        persistentVolumeClaim:
+          claimName: pvc-spec-local
+
