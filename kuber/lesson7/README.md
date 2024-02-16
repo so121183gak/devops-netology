@@ -114,7 +114,7 @@ spec:
 1. Включить и настроить NFS-сервер на MicroK8S.
 - Что бы включить NFS для MicroK8S необходимо сначала включить расширения сообщества
 ```
-sudo microk8s enable e nfs
+sudo microk8s enable community
 ```
 - Далее включаем сам NFS
 ```
