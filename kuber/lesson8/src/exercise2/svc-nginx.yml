@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-back
+spec:
+  selector:
+    app: web-app-back
+  ports:
+  - name: nginx-svc
+    protocol: TCP
+    port: 80
+    targetPort: 80
+

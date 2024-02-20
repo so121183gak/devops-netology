@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-back-deployment
+  labels:
+    app: web-app-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-back
+  template:
+    metadata:
+      labels:
+        app: web-app-back
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: cm-file-front-vol
+          mountPath: /usr/share/nginx/html
+      - name: multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 8080
+        env:
+        - name: HTTP_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: cm-env-back
+              key: multitool-port
+      volumes:
+      - name: cm-file-front-vol
+        configMap:
+          name: cm-file-front
