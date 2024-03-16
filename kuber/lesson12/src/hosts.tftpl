@@ -1,0 +1,33 @@
+all:
+    hosts:
+        node1:
+        %{ for i in masters }
+            ansible_host: ${i["network_interface"][0]["nat_ip_address"]}
+            ip: ${i["network_interface"][0]["ip_address"]}
+            access_ip: ${i["network_interface"][0]["nat_ip_address"]}
+        %{ endfor }
+        %{ for idx, worker in workers }
+        node${idx+2}:
+            ansible_host: ${worker["network_interface"][0]["nat_ip_address"]}
+            ip: ${worker["network_interface"][0]["ip_address"]}
+            access_ip: ${worker["network_interface"][0]["nat_ip_address"]}
+        %{ endfor }
+    children:
+        kube_control_plane:
+            hosts:
+                node1:
+        kube_node:
+            hosts:
+                node2:
+                node3:
+                node4:
+                node5:
+        etcd:
+            hosts:
+                node1:
+        k8s_cluster:
+            children:
+                kube_control_plane:
+                kube_node:
+        calico_rr:
+            hosts: {}
