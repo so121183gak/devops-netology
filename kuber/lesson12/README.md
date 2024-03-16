@@ -16,7 +16,7 @@
 
 #### Решение
 
-1. В качестве развертывания виртуальных машин, я использую terraform скрипт настроенный на **yandex** провайдера приложенный к заданию, для того что бы секрипт работал небходимо поменять ключи в скрипте на ваши в файле [main.tf](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/main.tf)
+1. В качестве развертывания виртуальных машин, я использую terraform скрипт настроенный на **yandex** провайдера приложенный, к заданию, для того что бы секрипт работал небходимо поменять ключи в скрипте на ваши в файле [main.tf](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/main.tf)
 
 ```
 locals {
@@ -25,7 +25,7 @@ locals {
 }
 ```
 - Скрипт отрабатывает на версии terraform v1.5.3, предварительно вы должны убедится что у вас правильно настроена командная строка yandex.
-- Так же на всех нодах с помощью cloud-init можно установить soft который в последствии будет полезен для работы, состав ПО можно задать [cloud-init.yaml](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/cloud-init.yaml)
+- Так же на всех нодах с помощью cloud-init можно установить soft который в последствии будет полезен для работы, состав ПО можно задать [cloud-init.yml](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/cloud-init.yml)
 
 ```
 packages:
