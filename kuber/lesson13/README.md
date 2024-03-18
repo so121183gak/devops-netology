@@ -18,20 +18,20 @@
 1. Создать deployment'ы приложений frontend, backend и cache и соответствующие сервисы.
 
 - deployment
-  - [frontend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/dpl-web-app-frontend.yml)
-  - [backend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/dpl-web-app-backend.yml)
-  - [cache](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/dpl-web-app-cache.yml)
+  - [frontend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/dpl-web-app-frontend.yml)
+  - [backend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/dpl-web-app-backend.yml)
+  - [cache](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/dpl-web-app-cache.yml)
 
 - service
-  - [frontend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/svc-web-app-frontend.yml)
-  - [backend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/svc-web-app-backend.yml)
-  - [cache](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/svc-web-app-cache.yml)
+  - [frontend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/svc-web-app-frontend.yml)
+  - [backend](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/svc-web-app-backend.yml)
+  - [cache](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/svc-web-app-cache.yml)
 
 2. В качестве образа использовать network-multitool.
 3. Разместить поды в namespace App.
 4. Создать политики, чтобы обеспечить доступ frontend -> backend -> cache. Другие виды подключений должны быть запрещены.
 - policy
-  - [all](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson12/src/np-web-app.yml)
+  - [all](https://github.com/so121183gak/devops-netology/tree/main/kuber/lesson13/src/np-web-app.yml)
 
 5. Продемонстрировать, что трафик разрешён и запрещён.
 <p align="center">
