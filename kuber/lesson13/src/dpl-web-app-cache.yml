@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-cache-deployment
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-cache
+  template:
+    metadata:
+      labels:
+        app: web-app-cache
+    spec:
+      containers:
+      - name: back-multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 80
+          name: cache-port

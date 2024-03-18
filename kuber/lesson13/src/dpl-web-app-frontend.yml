@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-front-deployment
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app-front
+  template:
+    metadata:
+      labels:
+        app: web-app-front
+    spec:
+      containers:
+      - name: front-multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 80
+          name: front-port
+
+
+
