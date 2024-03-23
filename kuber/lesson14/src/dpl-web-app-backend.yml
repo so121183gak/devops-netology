@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-back-deployment
+  namespace: app
+  labels:
+    app: web-app-back
+  annotations:
+    kubernetes.io/change-cause: "Nginx version 1.28"
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web-app-back
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: web-app-back
+    spec:
+      containers:
+      - name: back-nginx
+        image: nginx:1.28
+        ports:
+        - containerPort: 80
+          name: nginx-port
+        env:
+          - name: NGINX_PORT
+            value: "80"
+          - name: NGINX_LISTEN
+            value: "0.0.0.0"
+      - name: back-multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 8080
+          name: multitool-port
+        env:
+          - name: HTTP_PORT
+            value: "8080"
