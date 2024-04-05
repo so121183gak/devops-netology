@@ -6,10 +6,10 @@
 
 Для успешного выполнения задачи вам нужно:
 
-Зарегистрироваться на сайте hackerrank.
-Решить задачу "Say "Hello, World!" With Python".
-Решить задачу "Arithmetic Operators".
-Если вам нужна ссылка на ваше решение, на сайте hackerrank в правом верхнем углу нажмите на своё имя, перейдите в раздел "Profile" и скопируйте ссылку из адресной строки браузера.
+Зарегистрироваться на сайте [hackerrank](https://www.hackerrank.com/).
+Решить задачу ["Say "Hello, World!" With Python"](https://www.hackerrank.com/challenges/py-hello-world/problem).
+Решить задачу ["Arithmetic Operators"](https://www.hackerrank.com/challenges/python-arithmetic-operators/problem).
+Если вам нужна ссылка на ваше решение, на сайте **hackerrank** в правом верхнем углу нажмите на своё имя, перейдите в раздел "Profile" и скопируйте ссылку из адресной строки браузера.
 
 Пример: ссылка на аккаунт eshmargunov - hackerrank.com/eshmargunov
 
