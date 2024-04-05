@@ -4,14 +4,10 @@
 
 #### Задача №1
 
-Для успешного выполнения задачи вам нужно:
-
-Зарегистрироваться на сайте [hackerrank](https://www.hackerrank.com/).
-
-Решить задачу ["Say "Hello, World!" With Python"](https://www.hackerrank.com/challenges/py-hello-world/problem).
-
-Решить задачу ["Arithmetic Operators"](https://www.hackerrank.com/challenges/python-arithmetic-operators/problem).
-
+Для успешного выполнения задачи вам нужно:<br>
+Зарегистрироваться на сайте [hackerrank](https://www.hackerrank.com/).<br>
+Решить задачу ["Say "Hello, World!" With Python"](https://www.hackerrank.com/challenges/py-hello-world/problem).<br>
+Решить задачу ["Arithmetic Operators"](https://www.hackerrank.com/challenges/python-arithmetic-operators/problem).<br>
 Если вам нужна ссылка на ваше решение, на сайте **hackerrank** в правом верхнем углу нажмите на своё имя, перейдите в раздел "Profile" и скопируйте ссылку из адресной строки браузера.
 
 Пример: ссылка на аккаунт eshmargunov - hackerrank.com/eshmargunov
