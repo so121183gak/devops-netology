@@ -1,8 +1,9 @@
 #Финансове планирование
-salary_month = int(input('Введите заработную плату уходит на ипотеку: '))
-life_yer = int(input('Введите, какой процент(%) уходит на жизнь: '))
-mortgage_yer_sum = int(salary_month * 12 * mortgage_yer/100)
-life_yer_sum = int(salary_month * 12 * life_yer/100)
-savings_yer_sum = salary_month * 12 - mortgage_yer_sum - life_yer_sum
+salary_month = int(input('Введите заработную плату в месяц: '))
+mortgage_year = int(input('Введите, какой процент(%) уходит на ипотеку: '))
+life_year = int(input('Введите, какой процент(%) уходит на жизнь: '))
+mortgage_year_sum = int(salary_month * 12 * mortgage_year/100)
+life_year_sum = int(salary_month * 12 * life_year/100)
+savings_year_sum = salary_month * 12 - mortgage_year_sum - life_year_sum
 
-print(f'Вывод:\n Ипотека в год:{mortgage_yer_sum}\n Накопления в год:{savings_yer_sum}\n')
+print(f'Вывод:\n Ипотека в год:{mortgage_year_sum}\n Накопления в год:{savings_year_sum}\n')
