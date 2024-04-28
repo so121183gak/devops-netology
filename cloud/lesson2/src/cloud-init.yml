@@ -1,0 +1,11 @@
+#cloud-config
+users:
+- name: ubuntu
+  groups: sudo, wheel
+  shell: /bin/bash
+  sudo: ['ALL=(ALL) NOPASSWD:ALL']
+  ssh_authorized_keys:
+  - ${ssh_public_key}
+
+runcmd:
+  - echo '<html><head><title>Test image</title></head><body><img src=${image_id}></body></html>' > /var/www/html/index.html
