@@ -21,7 +21,6 @@ resource "yandex_storage_object" "image-object" {
   access_key    = yandex_iam_service_account_static_access_key.sa-static-key.access_key
   secret_key    = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
   bucket        = yandex_storage_bucket.test-bucket.bucket
-  # bucket        = "test-picture-lksjdhgfskjfghs"
   acl           = "public-read"
   key           = "test.png"
   source        = "~/test.png"
