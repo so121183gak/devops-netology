@@ -1,6 +1,5 @@
 # Создаем сервисный аккаунт для работы в Object Storage
 resource "yandex_iam_service_account" "sa" {
-  # folder_id = var.folder_id
   name = "sa"
 }
 
