@@ -48,11 +48,11 @@ packages:
 
 2. Развертывание кластера происходит средствами ansible используется готовый скрипт развертывания kubespray версии 2.24, так же используется ansible 2.16.4 и python 3.11.6
 
-- Для развертывания кластера необходимо перейти в  папку .ansible/kubespray/venv/bin и ввести команду:
+- Для развертывания кластера необходимо перейти в  папку .ansible/kubespray и ввести команду:
 
 
 ```
-ansible-playbook -i inventory/mycluster/hosts.yaml -u <имя пользователя ВМ> --become --become-user=root --private-key=<путь к вашему  приватному ключу> -e 'ansible_ssh_common_args="-o StrictHostKeyChecking=no"' cluster.yml --flush-cache
+./venv/bin/ansible-playbook -i inventory/mycluster/hosts.yaml -u <имя пользователя ВМ> --become --become-user=root --private-key=<путь к вашему  приватному ключу> -e 'ansible_ssh_common_args="-o StrictHostKeyChecking=no"' cluster.yml --flush-cache
 ```
 
 - В итоге мы получим установленный кластер согласно ТЗ.
